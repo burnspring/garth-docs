@@ -12,7 +12,7 @@ release is tagged with its version, for example `v0.10.0`.
 - **Admin → System → Garth → Version** shows it with the commit the binary was
   built from. `+dirty` after the commit means the tree had changes.
 
-The session image has its own version (for example `garth-session:0.4.9`),
+The session image has its own version (for example `garth-session:0.4.10`),
 and so does the agent it pins. **Admin → System → In every session** lists
 them.
 

@@ -23,11 +23,11 @@ the runtime class, and the CPU, memory and workspace limits.
 ## Building it
 
 ```bash
-docker build -t garth-session:0.4.9 sandbox/
+docker build -t garth-session:0.4.10 sandbox/
 ```
 
 - **One k3s box:** import it with
-  `docker save garth-session:0.4.9 | sudo k3s ctr images import -`.
+  `docker save garth-session:0.4.10 | sudo k3s ctr images import -`.
 - **A cluster:** push it to your registry and set the template's image by
   digest, so a session runs exactly the image that was built.
 
