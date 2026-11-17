@@ -9,10 +9,11 @@ styling), with one version: the newest. Every push to `main` republishes it.
 
 ## Release notes
 
-`src/content/docs/releases/v0-0-N.md` is one release. Nothing lists them by
+`src/content/docs/releases/vX-Y-Z.md` is one release. Nothing lists them by
 hand: the sidebar, the version beside the title and the agent index all read
-that folder. Garth's release workflow writes the page when a release is tagged
-(from `release-notes/0.0.N.md` in Garth's repository) and pushes it here.
+that folder. `scripts/sync-releases.sh` copies them from
+`release-notes/<version>.md` in a garth checkout beside this one; run it after a
+release and push, as toft-docs does for Toft.
 
 ## Layout
 

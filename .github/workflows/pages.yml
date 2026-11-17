@@ -1,7 +1,7 @@
 name: Publish
 
-# Every push to main republishes the site. Garth's release workflow pushes
-# a release's notes here, so a release republishes it too.
+# Every push to main republishes the site, release notes included
+# (scripts/sync-releases.sh copies them in from the garth repository).
 on:
   push:
     branches: ["main"]
