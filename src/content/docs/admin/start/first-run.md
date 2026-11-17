@@ -37,6 +37,9 @@ On **Admin → Sign-in**:
 3. Press **Test the connection**.
 4. Turn on **Sign in with …**.
 
+Without an identity provider, people can
+[sign in with GitHub](../../identity/github/) instead, or as well.
+
 Then restart Garth without `GARTH_DEV_SIGN_IN`. See
 [Single sign-on](../../identity/single-sign-on/).
 

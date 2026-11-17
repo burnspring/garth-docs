@@ -80,6 +80,6 @@ such as basic auth on the proxy.
 
 ## When the provider is down
 
-Single sign-on is the only way in for everyone but the local administrator.
-If the provider breaks, sign in as `admin` — see
+Single sign-on is the only way in for everyone who uses it. If the provider
+breaks, sign in as `admin` — see
 [The local administrator](../local-administrator/).

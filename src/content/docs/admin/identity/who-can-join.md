@@ -19,13 +19,22 @@ shared a project by username.
 
 Everyone who joins is put in the **Everyone** group.
 
+This applies however someone signs in:
+[single sign-on](../single-sign-on/) or [GitHub](../github/).
+
 ## Approving people
+
+When someone new starts waiting, administrators are told:
+
+- by email, each active administrator with an address, if
+  [email](../../config/email-and-slack/) is set up;
+- in Slack's default channel, if Slack is set up.
 
 While anyone is waiting, **Admin → People** opens with **Waiting for
 approval**: each person's name, email, how they signed in and when.
 
-- **Approve** — they can use Garth. They are sent an email if
-  [email](../../config/email-and-slack/) is set up, and must sign in again to
+- **Approve** — they can use Garth. If email is set up and they have an
+  address, they are sent the **Approved** message. They must sign in again to
   start.
 - **Decline…** — their account is removed. If they sign in again they join the
   queue again, or, while Garth is invite only, are turned away.
@@ -47,24 +56,6 @@ when. **Withdraw** cancels one.
 
 ## Messages
 
-**Admin → Messages** holds what Garth says to people at the door, and a banner
-for everyone inside.
-
-| Message | Shown |
-|---|---|
-| **Waiting for approval** | To someone who signed in while new accounts need approval |
-| **Not invited** | At sign-in, to someone without an invitation while Garth is invite only |
-| **Suspended** | At sign-in, to someone an administrator suspended |
-
-Each has a sensible default and can be up to 4,000 characters.
-
-### Announcement
-
-A banner across the top of every page, for everyone signed in.
-
-- **Show the announcement** — the switch.
-- **Tone** — **Information** (news, nothing to do), **Heads-up** (something
-  to plan for) or **Problem** (something is broken now).
-- **Hide after** — an optional date after which it disappears on its own.
-
-A **Preview** shows it as people will see it.
+What people read at the door — **Waiting for approval**, **Not invited**,
+**Suspended** — and the **Approved** email are set on **Admin → Messages**.
+See [Messages](../../config/messages/).

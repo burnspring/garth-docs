@@ -27,8 +27,9 @@ idle sandbox: **Ready**, **Starting** or **Being replaced**.
 
 The template is the toolset. A session changes its workspace, never its system:
 
-- Read-only root filesystem — writes go to `/workspace` and `/tmp` only.
-- Runs as uid 1000, no sudo, no package manager.
+- Read-only root filesystem — writes go to `/workspace`, `/tmp` and
+  `/home/node` only.
+- Runs as uid 1000, no sudo, no setuid programs, no system package manager.
 - Every Linux capability dropped; no privilege escalation.
 - No service-account token; no cloud credentials.
 - A new tool means a new template image.
@@ -37,14 +38,24 @@ The template is the toolset. A session changes its workspace, never its system:
 
 | Choice | What it allows |
 |---|---|
-| **Off** | `uv add` and `npm install` fail; only what the image has |
+| **Off** (the default) | pip, uv, npm and `go get` install nothing; only what the [image has](../../install/session-image/#libraries) |
 | **From your mirrors** | Into the project only, from the mirrors listed under it |
-| **Public registries** (default) | PyPI, npm and the like — into the project only |
+| **Public registries** | PyPI, npm and the like — into the project only |
 
-Dependencies land in the project's own environment (`.venv`,
-`node_modules`), never the system. The registry must also be an allowed
-destination below. A mirror's address is `https://`, and its host is allowed
-automatically.
+The egress proxy enforces the choice. It alone decides the package hosts —
+the public registries (PyPI, npm, Go, CRAN, crates.io and others) and
+GitHub's download hosts (`*.githubusercontent.com`, `codeload.github.com`,
+`ghcr.io`) — whatever the destination list or **Public internet** says:
+
+- **Off** and **From your mirrors** refuse them, even if they are listed.
+- **Public registries** allows them, even if they are not listed.
+- A mirror is reachable only while **From your mirrors** is chosen. Its
+  address is `https://`.
+
+Each session's package tools follow the choice: pip, uv, npm and Go point at
+nothing, at the mirrors, or at the public registries. Dependencies land in the
+project's own environment (`.venv`, `node_modules`), never the system. A
+change applies to sessions started after it.
 
 ## Network
 
@@ -69,21 +80,18 @@ The **Network** section lists what a sandbox can and can't reach.
 | **Public internet** | Any public address on ports 80 and 443. Private ranges stay blocked |
 
 Each entry is a host name, or `*.example.com` for its subdomains, with **What
-it's for**. A fresh install lists the public package registries:
+it's for**. A fresh install lists one:
 
 | Host | For |
 |---|---|
-| `github.com` | Clone dependencies and read public code |
-| `*.githubusercontent.com` | Release downloads |
-| `registry.npmjs.org`, `registry.yarnpkg.com` | npm and Yarn packages |
-| `pypi.org`, `files.pythonhosted.org` | Python packages |
-| `proxy.golang.org`, `sum.golang.org` | Go modules and their checksums |
-| `crates.io`, `static.crates.io` | Rust crates |
-| `cloud.r-project.org`, `p3m.dev` | R packages |
+| `github.com` | Read public code |
 
-Always allowed, without a listing: the model gateway, the project's git, the
-package mirrors, and each attached [Toft install](../toft-installs/) with the
-apps it serves under its host.
+Package registries and GitHub's download hosts don't belong in the list:
+[Project dependencies](#project-dependencies) decides them.
+
+Always allowed, without a listing: the model gateway, the project's git, and
+each attached [Toft install](../toft-installs/) with the apps it serves under
+its host.
 
 A change applies to sandboxes started after the save. Every change is recorded
 in Activity.

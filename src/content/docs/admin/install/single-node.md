@@ -32,8 +32,8 @@ Garth is built against agent-sandbox **v1.0.10**.
 From the Garth source:
 
 ```bash
-docker build -t garth-session:0.4.10 sandbox/
-docker save garth-session:0.4.10 | sudo k3s ctr images import -
+docker build -t garth-session:0.5.0 sandbox/
+docker save garth-session:0.5.0 | sudo k3s ctr images import -
 ```
 
 The template uses `imagePullPolicy: Never`, so the image must be in k3s's own

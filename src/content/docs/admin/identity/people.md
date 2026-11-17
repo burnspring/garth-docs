@@ -52,8 +52,8 @@ Click a name to open their page:
 ### Email
 
 Toft matches people by email when Garth signs a session in for them. Garth
-puts an email in only when it can vouch for it: the identity provider said it
-was verified, or an administrator set it here.
+puts an email in only when it can vouch for it: the identity provider or
+GitHub said it was verified, or an administrator set it here.
 
 Until then the address is their own word, and their sessions sign in to Toft
 with a code. Setting it here makes Garth vouch for it. The change is recorded

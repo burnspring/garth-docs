@@ -1,6 +1,6 @@
 ---
 title: Settings
-description: Admin → Settings — the org policy, spending, sessions, time zone, the warm pool and what people may create.
+description: Admin → Settings — the org policy, spending, sessions, the install's name, time zone, the warm pool and what people may create.
 ---
 
 **Admin → Settings** is how Garth behaves. Switches and choices save at once.
@@ -54,6 +54,18 @@ months. See [Budgets and alerts](../budgets-and-alerts/).
 | **Longest session** | 1 hour to 2 weeks | 12 hours | Ended after this, idle or not. Its work is saved first |
 | **Live sessions per person** | 1 to 50 | 3 | Across all projects. Paused sessions don't count. A person always has at most one per project |
 
+## Name
+
+**This install's name** — what Garth calls itself in its emails and Slack
+posts. Every email ends "Sent by *name* at *address*", with Garth's public
+address.
+
+- At most 60 characters, on one line.
+- It can't look like an address, such as `garth.example.com`.
+- **Empty** (the default): Garth.
+
+Press **Save** or Enter.
+
 ## Time zone
 
 **Show times in** — the zone dates and times are shown in for everyone who
@@ -104,5 +116,5 @@ development sign-in is on, it says so in a warning.
 
 Lists kept on pages of their own: [Models](../models/),
 [Sign-in](../../identity/single-sign-on/), [Toft installs](../toft-installs/),
-[Trusted sources](../trusted-sources/), [Git hosts](../git-hosts/) and
-[Email and Slack](../email-and-slack/).
+[Trusted sources](../trusted-sources/), [Git hosts](../git-hosts/),
+[Email and Slack](../email-and-slack/) and [Messages](../messages/).

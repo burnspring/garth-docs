@@ -18,18 +18,28 @@ Without them, those are shown in Garth only.
 | **User name** | — | Leave empty if the relay needs none |
 | **Password** | — | Stored encrypted; never shown again. Leave blank to keep the stored one |
 | **From** | `Garth <garth@localhost>` | The sender people see |
+| **Administrators' address** | — | Where administrator mail goes, such as a group address; up to ten, separated by commas. Empty: each administrator's own address |
 
 **Send test email** sends to the address you enter, or yours. Save first: the
 test uses the stored settings. The result stays on the page.
 
 Garth emails:
 
-- a person when their account is approved;
+- a person when their account is approved, with the
+  [Approved](../messages/#approved) message;
+- administrators, when someone new is
+  [waiting for approval](../../identity/who-can-join/#approving-people);
 - whoever an alert tells by email;
-- administrators, when the [org policy](../settings/#org-policy) can't be read.
+- administrators, when the [org policy](../settings/#org-policy) can't be read;
+- the audience of an [announcement email](../messages/#announcement-emails).
+
+Every email ends "Sent by *name* at *address*": the install's
+[name](../settings/#name) and Garth's public address, so a recipient can check
+one against the other.
 
 Email goes to the address on the person's account. Someone without one gets
-nothing by email.
+nothing by email. Mail for administrators goes to the **Administrators'
+address** when one is set, instead of to each administrator.
 
 ## Slack
 
@@ -37,7 +47,7 @@ nothing by email.
 |---|---|
 | **Post to Slack** | Alerts that ask for Slack post here |
 | **Bot token** | A Slack app's `xoxb-` token with `chat:write`. Stored encrypted; leave blank to keep it |
-| **Default channel** | Used when an alert names none. Invite the app to it |
+| **Default channel** | Used when an alert names none, and for someone new waiting for approval. Invite the app to it |
 
 **Send test message** posts to the default channel. Once a test passes, the
 page shows the workspace's name.

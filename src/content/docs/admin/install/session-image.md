@@ -11,23 +11,52 @@ system packages, so a new tool means a new image.
 
 - **Pi**, the agent, pinned to one version and driven in RPC mode by a small
   Node shim.
-- **git**, **toft** (the Toft CLI) and the usual command-line tools: ripgrep,
-  fd, jq, sqlite3, a C toolchain and the common `-dev` libraries.
+- **git**, **toft** (the Toft CLI, 0.10.0) and the usual command-line tools:
+  ripgrep, fd, jq, yq, curl, zip, sqlite3, psql, graphviz, pdftotext, editors,
+  a C toolchain and the common `-dev` libraries.
 - **The language toolchains Toft deploys**, at the versions Toft gives an app
-  that pins none: Python through uv, Node with npm, Go and R.
+  that pins none: Python 3.15 with uv and pip, Node 26 with npm, pnpm and yarn,
+  Go 1.27, and R 4.6 with renv.
 - **Toft's agent skills and commands**, installed with the Toft CLI.
 
 **Admin → Sandbox → Template** shows the image, the Pi and Toft CLI versions,
 the runtime class, and the CPU, memory and workspace limits.
 
+### Libraries
+
+Libraries for development and data analysis are installed already, so a
+session rarely needs to install anything:
+
+| | What is there |
+|---|---|
+| **DuckDB** | The 2.0 command line (`duckdb`), its Python and R libraries, and the `httpfs`, `excel`, `icu` and `fts` extensions |
+| **Python** | numpy, pandas, pyarrow, scipy, scikit-learn, statsmodels, matplotlib, seaborn, plotly, altair, openpyxl, requests, httpx, beautifulsoup4, sqlalchemy, psycopg, pydantic, fastapi, uvicorn, flask, streamlit, ipykernel, pytest, ruff and more |
+| **Node** | typescript, tsx, vite, react, tailwindcss, express, fastify, hono, zod, better-sqlite3, pg, d3, vitest, eslint, prettier. In `/node_modules`, so they import from any directory; their commands are on `PATH` |
+| **R** | dplyr, tidyr, readr, readxl, ggplot2, data.table, DBI, RSQLite, RPostgres, jsonlite, httr2, shiny, plumber, testthat |
+| **Go** | A local module cache with chi, pgx, gorilla/websocket, uuid, testify, cobra, yaml.v3 and golang.org/x/sync |
+
+The agent is told what is there, to use it rather than install, and to ask
+when a package is missing. Whether it may install is
+[Project dependencies](../../config/sandbox-and-network/#project-dependencies),
+off by default.
+
+### Locked down
+
+- The session runs as uid 1000, with no sudo and no setuid programs.
+- It can't write system software. The image build checks this and fails if
+  the session user could.
+- The root filesystem is read-only in both templates Garth ships, for one
+  k3s box and for a cluster. A session writes only
+  `/workspace`, `/tmp` and its home directory, `/home/node`.
+
 ## Building it
 
 ```bash
-docker build -t garth-session:0.4.10 sandbox/
+docker build -t garth-session:0.5.0 sandbox/
 ```
 
 - **One k3s box:** import it with
-  `docker save garth-session:0.4.10 | sudo k3s ctr images import -`.
+  `docker save garth-session:0.5.0 | sudo k3s ctr images import -`.
 - **A cluster:** push it to your registry and set the template's image by
   digest, so a session runs exactly the image that was built.
 
@@ -62,7 +91,7 @@ metadata:
   annotations:
     garth/name: "Rust"
     garth/description: "Rust stable with cargo and clippy."
-    garth/tools: "Rust 1.91, cargo, clippy, toft 0.9.14, Pi 1.5.0"
+    garth/tools: "Rust 1.91, cargo, clippy, toft 0.10.0, Pi 1.5.0"
 spec:
   podTemplate:
     spec:

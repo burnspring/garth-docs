@@ -52,8 +52,9 @@ opens it. See [The project page](../../projects/the-project-page/#files).
 ## What the sandbox can reach
 
 The sandbox reaches the internet only through Garth, and only the destinations
-your administrator allows. Installing packages works from the registries and
-mirrors they list; anything else is refused. Fetching another repository works
+your administrator allows. Common libraries for development and data analysis
+are already installed. Installing more works only if your administrator allows
+it, from their mirrors or the public registries; otherwise it is refused. Fetching another repository works
 for the trusted sources and the project's
 [other repositories](../../projects/settings/#other-repositories), using your
 connection to the git host.

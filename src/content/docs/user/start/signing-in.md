@@ -4,9 +4,14 @@ description: How you get into Garth, what the messages on the sign-in page mean,
 ---
 
 Open your Garth address — something like `https://garth.example.com` — and
-choose **Sign in with …**. The button names your organization's single sign-on,
-which your administrator set up. There is no self-service sign-up and no Garth
-password to remember.
+choose how to sign in:
+
+- **Sign in with …** — the button names your organization's single sign-on,
+  which your administrator set up.
+- **Continue with GitHub** — sign in with your GitHub account, if your
+  administrator turned it on.
+
+There is no Garth password to remember.
 
 After signing in you land on **Projects**, or on the page you were trying to
 open.
@@ -19,7 +24,7 @@ open.
 | **You need an invitation** | This install admits only people an administrator added. Ask them. |
 | **Your account is suspended** | An administrator turned your account off. |
 | **Your session ended. Sign in again.** | Your sign-in expired. Sign in and you return to the same page. |
-| **Single sign-on didn't finish** | Your identity provider sent you back with an error. The text under it says why. |
+| **Sign-in didn't finish** | Your identity provider or GitHub sent you back with an error. The text under it says why. |
 
 The text under the first three is written by your administrator, so it usually
 says who to ask.
