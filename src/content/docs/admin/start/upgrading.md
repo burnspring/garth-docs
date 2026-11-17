@@ -1,18 +1,18 @@
 ---
 title: Upgrading
-description: Versions, upgrading the control plane and the session image, and moving from Workbench.
+description: Versions, and upgrading the control plane and the session image.
 ---
 
 ## Versions
 
-Garth is versioned **0.0.N**, from 0.0.1. Each release bumps N by one. A
-release is tagged `v0.0.N`.
+Garth's versions are numbered as Toft's are; **0.10.0** is the first. A
+release is tagged with its version, for example `v0.10.0`.
 
 - `garth version` prints the version.
 - **Admin → System → Garth → Version** shows it with the commit the binary was
   built from. `+dirty` after the commit means the tree had changes.
 
-The session image has its own version (for example `garth-session:0.4.7`),
+The session image has its own version (for example `garth-session:0.4.9`),
 and so does the agent it pins. **Admin → System → In every session** lists
 them.
 
@@ -52,16 +52,3 @@ touched — it moves to the new image when that session next resumes.
 1. Open **Admin → System** and press **Run checks again**.
 2. Check **Version** names the release you meant.
 3. Open a session to confirm a pod starts.
-
-## Moving from Workbench
-
-Garth was called Workbench. On a box that ran it under the old name:
-
-- `workbench.db` is renamed to `garth.db` on the first start.
-- Saved work under `refs/workbench/` moves to `refs/garth/`.
-- The cluster objects have new names. Apply `deploy/k8s/single-node.yaml`
-  (namespace `garth`, template and image `garth-session`), then delete the
-  `workbench` namespace once no session runs there.
-- Install `deploy/caddy/garth.caddy` in place of `workbench.caddy`. The site
-  keeps its address.
-- Everyone signs in again: the cookie's name changed.

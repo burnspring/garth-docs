@@ -60,7 +60,7 @@ Attach it to the role named on the `garth-control-plane` service account.
    in the cluster.
 2. Build both images and push them to your registry:
    `docker build -f deploy/control-plane/Dockerfile -t garth:$(go run ./cmd/garth version) .`
-   and `docker build -t garth-session:0.4.7 sandbox/`.
+   and `docker build -t garth-session:0.4.9 sandbox/`.
 3. In `garth.yaml`, set the session image **by digest**
    (`garth-session@sha256:…`), and size the `ResourceQuota` to the session
    node pool. Its defaults fit about fifty sessions. Apply it.
